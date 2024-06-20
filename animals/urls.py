@@ -21,9 +21,11 @@ urlpatterns = [
     path('feed/<int:pk>/edit/', views.feed_update, name='feed_update'),
     path('feed/<int:pk>/delete/', views.feed_delete, name='feed_delete'),
     
-    path('', views.account_list, name='account_list'),
+    path('accounts/', views.account_list, name='account_list'),
     path('account/<int:pk>/', views.account_detail, name='account_detail'),
-    path('account/new/', views.account_create, name='account_create'),
-    path('account/<int:pk>/edit/', views.account_update, name='account_update'),
+    path('accounts/create/', views.account_create, name='account_create'),
+    path('account/<int:pk>/update/', views.account_update, name='account_update'),
     path('account/<int:pk>/delete/', views.account_delete, name='account_delete'),
+    path('account/<int:pk>/donation/add/', views.account_donation_create, name='account_donation_create'),
+    path('account/<int:account_pk>/donation/<int:donation_pk>/delete/', views.account_donation_delete, name='account_donation_delete'),
 ]

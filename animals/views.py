@@ -1,6 +1,6 @@
 ﻿from django.shortcuts import render, get_object_or_404, redirect
-from .models import Animal, Adoption, Employee, Feed, Account
-from .forms import AnimalForm, AdoptionForm, EmployeeForm, FeedForm, AccountForm
+from .models import Animal, Adoption, Employee, Feed, Account, Donation
+from .forms import AnimalForm, AdoptionForm, EmployeeForm, FeedForm, AccountForm, DonationForm
 from django.http import HttpResponse
 
 def animal_list(request):
@@ -161,5 +161,35 @@ def account_delete(request, pk):
         return redirect('account_list')
     return render(request, 'accounts/account_confirm_delete.html', {'account': account})
 
+def account_donation_create(request, pk):
+    account = get_object_or_404(Account, pk=pk)
+    
+    if request.method == 'POST':
+        form = DonationForm(request.POST)
+        if form.is_valid():
+            donation = form.save(commit=False)
+            donation.account = account  # Привязываем пожертвование к счету
+            donation.save()
+            account.total_donations += donation.amount  # Обновляем общую сумму пожертвований на счету
+            account.save()
+            return redirect('account_detail', pk=pk)
+    else:
+        form = DonationForm()
+    
+    return render(request, 'accounts/account_donation_form.html', {'form': form, 'account': account})
+
+def account_donation_delete(request, account_pk, donation_pk):
+    account = get_object_or_404(Account, pk=account_pk)
+    donation = get_object_or_404(Donation, pk=donation_pk)
+    
+    if request.method == 'POST':
+        account.total_donations -= donation.amount
+        account.save()
+        donation.delete()
+        return redirect('account_detail', pk=account_pk)
+    
+    return render(request, 'accounts/account_donation_confirm_delete.html', {'account': account, 'donation': donation})
+
 def index(request):
     return HttpResponse("Привет, мир! Это мой первый Django проект.")
+

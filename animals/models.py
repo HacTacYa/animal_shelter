@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Animal(models.Model):
     name = models.CharField(max_length=100)
@@ -35,8 +36,15 @@ class Feed(models.Model):
         return self.name
 
 class Account(models.Model):
-    account_number = models.CharField(max_length=30)
+    account_number = models.CharField(max_length=100)
     balance = models.DecimalField(max_digits=10, decimal_places=2)
+    total_donations = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+
+    
+class Donation(models.Model):
+    donor_name = models.CharField(max_length=100)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return self.account_number
+        return f"{self.donor_name} - {self.amount}"

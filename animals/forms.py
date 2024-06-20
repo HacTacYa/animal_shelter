@@ -1,5 +1,5 @@
 ﻿from django import forms
-from .models import Animal, Adoption, Employee, Feed, Account
+from .models import Animal, Adoption, Employee, Feed, Account, Donation
 
 class AnimalForm(forms.ModelForm):
     class Meta:
@@ -53,3 +53,8 @@ class AccountForm(forms.ModelForm):
             'account_number': 'ФИО',
             'balance': 'Сумма',
         }
+        
+class DonationForm(forms.ModelForm):
+    class Meta:
+        model = Donation
+        fields = '__all__'
