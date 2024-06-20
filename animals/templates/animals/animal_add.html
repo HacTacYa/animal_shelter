@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить новое животное</title>
+</head>
+<body>
+    <h1>Добавить новое животное</h1>
+    <form method="post" action="{% url 'animal_add' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+    <a href="{% url 'animal_list' %}">Вернуться к списку животных</a>
+</body>
+</html>

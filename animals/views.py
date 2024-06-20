@@ -1,10 +1,22 @@
-from django.shortcuts import render, get_object_or_404, redirect
+﻿from django.shortcuts import render, get_object_or_404, redirect
 from .models import Animal, Adoption
 from .forms import AnimalForm, AdoptionForm
+from django.http import HttpResponse
 
 def animal_list(request):
     animals = Animal.objects.all()
     return render(request, 'animals/animal_list.html', {'animals': animals})
+
+
+def animal_add(request):
+    if request.method == 'POST':
+        form = AnimalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('animal_list')
+    else:
+        form = AnimalForm()
+    return render(request, 'animal_add.html', {'form': form})
 
 def animal_detail(request, pk):
     animal = get_object_or_404(Animal, pk=pk)
@@ -37,3 +49,6 @@ def animal_delete(request, pk):
         animal.delete()
         return redirect('animal_list')
     return render(request, 'animals/animal_confirm_delete.html', {'animal': animal})
+
+def index(request):
+    return HttpResponse("Привет, мир! Это мой первый Django проект.")
