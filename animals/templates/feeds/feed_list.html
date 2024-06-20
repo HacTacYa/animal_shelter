@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список кормов</title>
+</head>
+<body>
+    <h1>Список кормов</h1>
+    <ul>
+        {% for feed in feeds %}
+            <li>
+                <a href="{% url 'feed_detail' feed.pk %}">{{ feed.name }} - {{ feed.description }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'feed_create' %}">Добавить новый корм</a><br>
+    <a href="{% url 'animal_list' %}">Вернуться</a>
+</body>
+</html>

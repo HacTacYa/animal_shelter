@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали корма</title>
+</head>
+<body>
+    <h1>{{ feed.name }}</h1>
+    <p>Описание: {{ feed.description }}</p>
+    <a href="{% url 'feed_update' feed.pk %}">Редактировать</a>
+    <form action="{% url 'feed_delete' feed.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <a href="{% url 'feed_list' %}">Назад к списку кормов</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Удалить пожертвование</title>
+</head>
+<body>
+    <h1>Удалить пожертвование</h1>
+    <p>Вы уверены, что хотите удалить информацию о пожертвовании №{{ account.account_number }}?</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit">Да, удалить</button>
+    </form>
+    <a href="{% url 'account_list' %}">Отмена</a>
+</body>
+</html>

@@ -7,13 +7,12 @@
 <body>
     <h1>{{ animal.name }}</h1>
     <p>Возраст: {{ animal.age }}</p>
-    <p>Порода: {{ animal.breed }}</p>
+    <p>Вид: {{ animal.breed }}</p>
     <p>Описание: {{ animal.description }}</p>
-    <p>Статус здоровья: {{ animal.health_status }}</p>
-    <img src="{{ animal.photo.url }}" alt="{{ animal.name }}">
+    <p>Состояние здоровья: {{ animal.health_status }}</p>
     <a href="{% url 'animal_update' animal.pk %}">Изменить</a>
     <form action="{% url 'animal_delete' animal.pk %}" method="post">{% csrf_token %}
-        <input type="submit" value="Delete">
+        <input type="submit" value="Удалить">
     </form>
     <a href="{% url 'animal_list' %}">Вернуться к списку</a>
 </body>

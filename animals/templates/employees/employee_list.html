@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список сотрудников</title>
+</head>
+<body>
+    <h1>Список сотрудников</h1>
+    <a href="{% url 'employee_create' %}">Добавить сотрудника</a>
+    <ul>
+        {% for employee in employees %}
+            <li>
+                <a href="{% url 'employee_detail' employee.pk %}">{{ employee.name }}</a> - {{ employee.position }}
+                <a href="{% url 'employee_update' employee.pk %}">Редактировать</a>
+                <form action="{% url 'employee_delete' employee.pk %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Удалить</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'animal_list' %}">Вернуться</a>
+</body>
+</html>

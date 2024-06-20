@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пожертвований</title>
+</head>
+<body>
+    <h1>Список пожертвований</h1>
+    <ul>
+        {% for account in accounts %}
+            <li>
+                <a href="{% url 'account_detail' account.pk %}">Благотворитель: {{ account.account_number }} - Сумма: {{ account.balance }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'account_create' %}">Добавить новое пожертвование</a><br>
+    <a href="{% url 'animal_list' %}">Вернуться</a>
+</body>
+</html>

@@ -4,27 +4,11 @@
     <title>{% if form.instance.pk %}Изменить информацию о животном{% else %}Добавить новое животное{% endif %}</title>
 </head>
 <body>
-    <h1>{% if form.instance.pk %}Изменить животное{% else %}Добавить новое животное{% endif %}</h1>
+    <h1>{% if form.instance.pk %}Изменить информацию о животном{% else %}Добавить новое животное{% endif %}</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Сохранить</button>
-    </form>
-    <a href="{% url 'animal_list' %}">Вернуться к списку</a>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Форма животного</title>
-</head>
-<body>
-    <h1>{{ form.instance.pk|yesno:"Изменить животное,Добавить новое животное" }}</h1>
-    <form method="post" enctype="multipart/form-data">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Сохранить">
     </form>
     <a href="{% url 'animal_list' %}">Вернуться к списку</a>
 </body>

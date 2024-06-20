@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Список животных</title>
@@ -9,10 +9,17 @@
     <ul>
         {% for animal in animals %}
             <li>
-                <a href="{% url 'animal_detail' animal.id %}">{{ animal.name }}</a> - {{ animal.breed }}
+                <a href="{% url 'animal_detail' animal.pk %}">{{ animal.name }}</a>
             </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'animal_add' %}">Добавить новое животное</a>
+    <a href="{% url 'animal_create' %}">Добавить новое животное</a>
+
+    <h2>Дополнительная информация</h2>
+    <ul>
+        <li><a href="{% url 'employee_list' %}">Сотрудники</a></li>
+        <li><a href="{% url 'feed_list' %}">Корма</a></li>
+        <li><a href="{% url 'account_list' %}">Пожертвования</a></li>
+    </ul>
 </body>
 </html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о сотруднике</title>
+</head>
+<body>
+    <h1>{{ employee.name }}</h1>
+    <p>Должность: {{ employee.position }}</p>
+    <p>Паспортные данные: {{ employee.bio }}</p>
+    <a href="{% url 'employee_update' employee.pk %}">Редактировать</a>
+    <form action="{% url 'employee_delete' employee.pk %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <a href="{% url 'employee_list' %}">Назад к списку</a>
+</body>
+</html>
