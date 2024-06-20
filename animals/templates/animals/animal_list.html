@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Список животных</title>
+</head>
+<body>
+    <h1>Список животных</h1>
+    <ul>
+        {% for animal in animals %}
+            <li>
+                <a href="{% url 'animal_detail' animal.id %}">{{ animal.name }}</a> - {{ animal.breed }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'animal_add' %}">Добавить новое животное</a>
+</body>
+</html>
