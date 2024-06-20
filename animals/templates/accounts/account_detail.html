@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Благотворитель: {{ account.account_number }}</h1>
-    <p>Баланс: {{ account.balance }}</p>
+    <p>Сумма: {{ account.balance }}</p>
     <a href="{% url 'account_update' account.pk %}">Редактировать</a>
     <form action="{% url 'account_delete' account.pk %}" method="post">
         {% csrf_token %}
